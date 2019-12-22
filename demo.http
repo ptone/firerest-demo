@@ -1,0 +1,53 @@
+get https://api-demo-avzcrpvnta-uc.a.run.app
+
+###
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/openapi.json
+
+
+### 
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/users/
+
+###
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?_limit=5
+
+### 
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Tesla
+
+### 
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Tesla&year=2019
+
+
+### 
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Toyota&year=gt~2018
+
+### 
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?year=gt~2018&body_styles=ac~Wagon
+
+
+###
+
+post https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/
+content-type: application/json
+
+ {
+    "make": "Gizmo-mobiles",
+    "model": "nifty",
+    "year": 2019,
+    "body_styles": [
+      "Sedan",
+      "Wagon"
+    ]
+  }
+
+###
+
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Gizmo-mobiles
+###
+get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/f316d9adb5ea404194a35723fc03b9b5
