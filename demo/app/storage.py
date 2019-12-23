@@ -3,6 +3,9 @@ import uuid
 
 from datetime import datetime
 from typing import List
+from fastapi import HTTPException
+
+
 from pydantic import BaseModel
 from google.cloud import firestore
 
@@ -23,6 +26,7 @@ class ModelStorage:
         print("saving ", model_instance.id)
         if model_instance.id is None:
             model_instance.id = uuid.uuid4().hex
+        # else check if it exists and 404?
         self._db.collection(model_instance.__class__.__name__).document(model_instance.id).set(model_instance.dict())
         return model_instance
     
@@ -31,13 +35,18 @@ class ModelStorage:
             raise RuntimeError("Model kind was not provided at initialization or with get")
         kind  = kind or self._cls
         doc = self._db.collection(kind.__name__).document(id).get()
+        if not doc.exists:
+            raise HTTPException(status_code=404, detail="Item not found")
         return kind(**doc.to_dict())
     
     def delete(self, id, kind=None):
         if self._cls is None and kind is None:
             raise RuntimeError("Model kind was not provided at initialization or with get")
         kind  = kind or self._cls
-        doc = self._db.collection(kind.__name__).document(id).delete()
+        doc = self._db.collection(kind.__name__).document(id)
+        if not doc.exists:
+            raise HTTPException(status_code=404, detail="Item not found")
+        doc.delete()
         return
 
     def query(self, query=[], _limit=100, kind=None):
