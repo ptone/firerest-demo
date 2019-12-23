@@ -1,40 +1,54 @@
-get https://api-demo-avzcrpvnta-uc.a.run.app
+
+# This file is designed to be used with vscode REST client extension
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+# Configure your Cloud Run URL in settings.json (could be just for a workspace)
+# {
+#   "rest-client.environmentVariables": {
+#     "$shared": {
+#       "api-demo-url": "https://api-demo-*****-uc.a.run.app"
+#     }
+#   }
+# }
+
+get {{ api-demo-url }}
 
 ###
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/openapi.json
+get {{ api-demo-url }}/api/v1/openapi.json
 
-### https://api-demo-avzcrpvnta-uc.a.run.app/docs
+### https://{{ api-demo-url }}/docs
 
 ### 
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/users/
+get {{ api-demo-url }}/api/v1/users/
 
 ###
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?_limit=5
+get {{ api-demo-url }}/api/v1/cars/?_limit=3
 
 ### 
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Tesla
+get {{ api-demo-url }}/api/v1/cars/?make=Tesla
 
 ### 
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Tesla&year=2019
+get {{ api-demo-url }}/api/v1/cars/?make=Tesla&year=2019
 
 
 ### 
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Toyota&year=gt~2018
+get {{ api-demo-url }}/api/v1/cars/?make=Toyota&year=gt~2018
 
 ### 
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?year=gt~2018&body_styles=ac~Wagon
+get {{ api-demo-url }}/api/v1/cars/?year=gt~2018&body_styles=ac~Wagon
 
 
 ###
+# @name createRequest
 
-post https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/
+post {{ api-demo-url }}/api/v1/cars/
 content-type: application/json
 
  {
@@ -48,7 +62,16 @@ content-type: application/json
   }
 
 ###
+get {{ api-demo-url }}/api/v1/cars/?make=Gizmo-mobiles
 
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/?make=Gizmo-mobiles
+
+
 ###
-get https://api-demo-avzcrpvnta-uc.a.run.app/api/v1/cars/f316d9adb5ea404194a35723fc03b9b5
+@carId = {{createRequest.response.body.$.id}}
+get {{ api-demo-url }}/api/v1/cars/{{ carID }}
+
+###
+get {{ api-demo-url }}/api/v1/cars/f316d9adb5ea404194a35723fc03b9b5
+
+###
+delete {{ api-demo-url }}/api/v1/cars/f316d9adb5ea404194a35723fc03b9b5
