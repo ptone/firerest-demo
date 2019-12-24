@@ -1,0 +1,412 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Demo",
+    "version": "0.1.0"
+  },
+  "host": "endpoints-gateway.ptone.dev",
+  "x-google-backend": {
+    "address": "https://api-demo-avzcrpvnta-uc.a.run.app"
+  },
+  "paths": {
+    "/api/v1/cars": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "default": "",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 100,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Car"
+              },
+              "title": "Response List Items Api V1 Cars Get",
+              "type": "array"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ],
+        "description": " List cars\n \n **Supports queries**\n\n `?q=[field]=[value],...`\n\n Multiple statements supported comma delimited.\n\n Equality operator is the default, for other operators they are encoded in the value separated by a `~`:\n\n `?[field]=[op]~[value]`\n\n Operators supported are:\n\n | Operator | Encoding | Meaning |\n | -- | -- | -- |\n | == | _none; default_ | Equality |\n | > | gt | Greater Than |\n | < | lt | Less Than |\n | >= | gte | Greater Than or Equal |\n | <= | lte | Less Than or Equal |\n | array_contains | ac | for fields that are arrays, return only items where the field contains value |\n\n Number or results returned can be limited with a limit querystring param\n\n **Examples**\n\n all cars where foo == bar:  `?q=foo=bar`\n\n3 cars where year greater than 2018 and features is an array that contains 'tall'\n\n`?q=year=gt~2018,features=ac~tall&limit=3`\n \n ",
+        "operationId": "list_items_api_v1_cars_get",
+        "summary": "List Items"
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ],
+        "description": "Create an item given an filled version of the model\n\n**NOTE** id should be empty on post",
+        "operationId": "create_item_api_v1_cars_post",
+        "summary": "Create Item"
+      }
+    },
+    "/api/v1/cars/{id}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ],
+        "description": "Delete an item given the ID",
+        "operationId": "delete_item_api_v1_cars__id__delete",
+        "summary": "Delete Item"
+      },
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ],
+        "description": "Get an Item by ID",
+        "operationId": "read_item_api_v1_cars__id__get",
+        "summary": "Read Item"
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "default": "",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 100,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/User"
+              },
+              "title": "Response List Items Api V1 Users Get",
+              "type": "array"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "description": " List users\n \n **Supports queries**\n\n `?q=[field]=[value],...`\n\n Multiple statements supported comma delimited.\n\n Equality operator is the default, for other operators they are encoded in the value separated by a `~`:\n\n `?[field]=[op]~[value]`\n\n Operators supported are:\n\n | Operator | Encoding | Meaning |\n | -- | -- | -- |\n | == | _none; default_ | Equality |\n | > | gt | Greater Than |\n | < | lt | Less Than |\n | >= | gte | Greater Than or Equal |\n | <= | lte | Less Than or Equal |\n | array_contains | ac | for fields that are arrays, return only items where the field contains value |\n\n Number or results returned can be limited with a limit querystring param\n\n **Examples**\n\n all users where foo == bar:  `?q=foo=bar`\n\n3 users where year greater than 2018 and features is an array that contains 'tall'\n\n`?q=year=gt~2018,features=ac~tall&limit=3`\n \n ",
+        "operationId": "list_items_api_v1_users_get",
+        "summary": "List Items"
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "description": "Create an item given an filled version of the model\n\n**NOTE** id should be empty on post",
+        "operationId": "create_item_api_v1_users_post",
+        "summary": "Create Item"
+      }
+    },
+    "/api/v1/users/{id}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "description": "Delete an item given the ID",
+        "operationId": "delete_item_api_v1_users__id__delete",
+        "summary": "Delete Item"
+      },
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "description": "Get an Item by ID",
+        "operationId": "read_item_api_v1_users__id__get",
+        "summary": "Read Item"
+      }
+    }
+  },
+  "definitions": {
+    "Car": {
+      "properties": {
+        "body_styles": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Body Styles",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "make": {
+          "default": "",
+          "title": "Make",
+          "type": "string"
+        },
+        "model": {
+          "default": "",
+          "title": "Model",
+          "type": "string"
+        },
+        "year": {
+          "title": "Year",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "year"
+      ],
+      "title": "Car",
+      "type": "object"
+    },
+    "HTTPValidationError": {
+      "properties": {
+        "detail": {
+          "items": {
+            "$ref": "#/definitions/ValidationError"
+          },
+          "title": "Detail",
+          "type": "array"
+        }
+      },
+      "title": "HTTPValidationError",
+      "type": "object"
+    },
+    "User": {
+      "properties": {
+        "first": {
+          "default": "John",
+          "title": "First",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "last": {
+          "default": "Doe",
+          "title": "Last",
+          "type": "string"
+        }
+      },
+      "title": "User",
+      "type": "object"
+    },
+    "ValidationError": {
+      "properties": {
+        "loc": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Location",
+          "type": "array"
+        },
+        "msg": {
+          "title": "Message",
+          "type": "string"
+        },
+        "type": {
+          "title": "Error Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "loc",
+        "msg",
+        "type"
+      ],
+      "title": "ValidationError",
+      "type": "object"
+    }
+  },
+  "x-components": {}
+}
