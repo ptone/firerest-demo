@@ -47,7 +47,6 @@ get {{ api-demo-url }}/api/v1/cars?q=year=gt~2018,body_styles=ac~Wagon
 
 ###
 # @name createRequest
-
 post {{ api-demo-url }}/api/v1/cars
 content-type: application/json
 
@@ -64,14 +63,9 @@ content-type: application/json
 ###
 get {{ api-demo-url }}/api/v1/cars?q=make=Gizmo-mobiles
 
-
-
 ###
 @carId = {{createRequest.response.body.$.id}}
-get {{ api-demo-url }}/api/v1/cars/{{ carID }}
+get {{ api-demo-url }}/api/v1/cars/{{ carId }}
 
 ###
-get {{ api-demo-url }}/api/v1/cars/f316d9adb5ea404194a35723fc03b9b5
-
-###
-delete {{ api-demo-url }}/api/v1/cars/f316d9adb5ea404194a35723fc03b9b5
+delete {{ api-demo-url }}/api/v1/cars/{{ carId }}
