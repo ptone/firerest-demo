@@ -21,34 +21,34 @@ get {{ api-demo-url }}/api/v1/openapi.json
 
 ### 
 
-get {{ api-demo-url }}/api/v1/users/
+get {{ api-demo-url }}/api/v1/users
 
 ###
 
-get {{ api-demo-url }}/api/v1/cars/?_limit=3
+get {{ api-demo-url }}/api/v1/cars?limit=3
 
 ### 
 
-get {{ api-demo-url }}/api/v1/cars/?make=Tesla
+get {{ api-demo-url }}/api/v1/cars?q=make=Tesla
 
 ### 
 
-get {{ api-demo-url }}/api/v1/cars/?make=Tesla&year=2019
+get {{ api-demo-url }}/api/v1/cars?q=make=Tesla,year=2019
 
 
 ### 
 
-get {{ api-demo-url }}/api/v1/cars/?make=Toyota&year=gt~2018
+get {{ api-demo-url }}/api/v1/cars?q=make=Toyota,year=gt~2018
 
 ### 
 
-get {{ api-demo-url }}/api/v1/cars/?year=gt~2018&body_styles=ac~Wagon
+get {{ api-demo-url }}/api/v1/cars?q=year=gt~2018,body_styles=ac~Wagon
 
 
 ###
 # @name createRequest
 
-post {{ api-demo-url }}/api/v1/cars/
+post {{ api-demo-url }}/api/v1/cars
 content-type: application/json
 
  {
@@ -62,7 +62,7 @@ content-type: application/json
   }
 
 ###
-get {{ api-demo-url }}/api/v1/cars/?make=Gizmo-mobiles
+get {{ api-demo-url }}/api/v1/cars?q=make=Gizmo-mobiles
 
 
 

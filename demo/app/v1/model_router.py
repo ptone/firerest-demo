@@ -1,5 +1,5 @@
 from typing import List
-
+import urllib.parse
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 
@@ -14,21 +14,31 @@ def get_router(endpoint_model):
     db = app.storage.get_default()
 
 
-    @router.get("/", response_model=List[endpoint_model])
-    def list_items(request: Request, _limit: int = 100):
+    @router.get("", response_model=List[endpoint_model])
+    def list_items(request: Request, q: str = "", limit: int = 100):
  
-        q = request.query_params.items()
-        objects = db.query(query=q, kind=endpoint_model, _limit=_limit)
+        print(q)
+        try:
+            if q != "":
+                q = {i.split("=")[0]: [i.split("=")[1]] for i in q.split(",") }
+            else:
+                q = {}
+        except Exception as e:
+            raise HTTPException(status_code=400, detail="malformed query")
+        # q = request.query_params.items()
+        # q = urllib.parse.parse_qs(q)
+        print(q)
+        objects = db.query(query=q, kind=endpoint_model, _limit=limit)
         return objects
     
     list_items.__doc__ = """
     List {kind}s
     
-    **Supports query via query string:**
+    **Supports queries**
 
-    `?[field]=[value]`
+    `?q=[field]=[value],...`
 
-    Multiple fields can be added.
+    Multiple statements supported comma delimited.
 
     Equality operator is the default, for other operators they are encoded in the value separated by a `~`:
 
@@ -45,17 +55,19 @@ def get_router(endpoint_model):
     | <= | lte | Less Than or Equal |
     | array_contains | ac | for fields that are arrays, return only items where the field contains value |
  
+    Number or results returned can be limited with a limit querystring param
+
     **Examples**
 
-    all {kind}s where foo == bar:  `?foo=bar`
+    all {kind}s where foo == bar:  `?q=foo=bar`
 
-   {kind}s where year greater than 2018 and features is an array that contains 'tall'
+   3 {kind}s where year greater than 2018 and features is an array that contains 'tall'
 
-   `?year=gt~2018&features=ac~tall`
+   `?q=year=gt~2018,features=ac~tall&limit=3`
     
     """.format(kind=endpoint_model.__name__.lower())
 
-    @router.post("/", response_model=endpoint_model)
+    @router.post("", response_model=endpoint_model)
     def create_item(obj: endpoint_model):
         """
         Create an item given an filled version of the model
