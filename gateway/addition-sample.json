@@ -1,0 +1,6 @@
+{
+  "host": "api-demo-gateway-avzcrpvnta-uc.a.run.app",
+  "x-google-backend": {
+    "address": "https://api-demo-avzcrpvnta-uc.a.run.app"
+  },
+}
