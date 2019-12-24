@@ -44,7 +44,7 @@ class ModelStorage:
             raise RuntimeError("Model kind was not provided at initialization or with get")
         kind  = kind or self._cls
         doc = self._db.collection(kind.__name__).document(id)
-        if not doc.exists:
+        if not doc.get().exists:
             raise HTTPException(status_code=404, detail="Item not found")
         doc.delete()
         return
