@@ -44,6 +44,10 @@ get {{ api-demo-url }}/api/v1/cars?q=make=Toyota,year=gt~2018
 
 get {{ api-demo-url }}/api/v1/cars?q=year=gt~2018,body_styles=ac~Wagon
 
+### multiple range on year
+
+get {{ api-demo-url }}/api/v1/cars?q=year=gt~2016,year=lt~2019
+
 
 ###
 # @name createRequest
