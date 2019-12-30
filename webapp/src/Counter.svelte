@@ -1,0 +1,18 @@
+<script lang="ts">
+  import Button, {Label, Icon} from '@smui/button';
+  export let value: number = 0;
+  export let step: number = 1;
+</script>
+
+<div>
+  <p class="mdc-typography--body1">
+    <slot>Default Counter</slot>
+  </p>
+  <div>
+     <b>
+     {value}
+     </b>
+    <Button on:click={() => (value += step)}><Icon class="material-icons">thumb_up</Icon>+</Button>
+    <Button on:click={() => (value -= step)}>-</Button>
+  </div>
+</div>
