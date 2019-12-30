@@ -49,7 +49,7 @@ class ModelStorage:
         doc.delete()
         return
 
-    def query(self, query={}, _limit=100, kind=None):
+    def query(self, query={}, limit=100, kind=None):
         if self._cls is None and kind is None:
             raise RuntimeError("Model kind was not provided at initialization or with get")
         ref = self._db.collection(kind.__name__)
@@ -58,8 +58,8 @@ class ModelStorage:
             "string": str,
             "integer": int
         }
-        for k, v in query.items():
-            field = k
+        for clause in query:
+            field, v = clause
             if field in reserved:
                 continue
             op, val = parse_query(v)
@@ -70,7 +70,7 @@ class ModelStorage:
 
 
             ref = ref.where(field, op, val)
-        ref = ref.limit(int(_limit))
+        ref = ref.limit(int(limit))
         # return full result as array
         result = [d.to_dict() for d in ref.stream()]
         return result
@@ -84,9 +84,6 @@ def parse_query(encoded):
         "ac": "array_contains"
         }
     op = "=="
-    if len(encoded) > 1:
-        raise NotImplementedError("Multi args not supported")
-    encoded = encoded[0]
     if '~' in encoded:
         # the value has an operator
         op, val = encoded.split("~")

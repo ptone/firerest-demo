@@ -17,18 +17,16 @@ def get_router(endpoint_model):
     @router.get("", response_model=List[endpoint_model])
     def list_items(request: Request, q: str = "", limit: int = 100):
  
-        print(q)
+        # parse the query into a list of (k, v) pairs where v is still the encoded form with op~val
+        # this form is decoded in the storage query layer
         try:
             if q != "":
-                q = {i.split("=")[0]: [i.split("=")[1]] for i in q.split(",") }
+                q = [(i.split("=")[0], i.split("=")[1]) for i in q.split(",") ]
             else:
-                q = {}
+                q = []
         except Exception as e:
             raise HTTPException(status_code=400, detail="malformed query")
-        # q = request.query_params.items()
-        # q = urllib.parse.parse_qs(q)
-        print(q)
-        objects = db.query(query=q, kind=endpoint_model, _limit=limit)
+        objects = db.query(query=q, kind=endpoint_model, limit=limit)
         return objects
     
     list_items.__doc__ = """
