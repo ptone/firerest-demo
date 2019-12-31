@@ -6,6 +6,7 @@ const app = new App({
   props: {
     name: "world"
   }
+  // , hydrate: true // for ssr
 });
 
 export default app;
