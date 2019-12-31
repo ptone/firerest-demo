@@ -27,8 +27,7 @@
 
  </script>
 
-
-<Drawer class="app-drawer-layout" variant="dismissible" bind:this={myDrawer} bind:open={$navOpen}>
+<Drawer class="mdc-top-app-bar--fixed-adjust" variant="dismissible" bind:this={myDrawer} bind:open={$navOpen}>
   <Header>
     <Title>Super Drawer</Title>
     <Subtitle>It's the best drawer.</Subtitle>
@@ -40,6 +39,185 @@
         <Text>{name} {$isActive(path)}</Text>
       </Item> 
     {/each}
+    <Separator />
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+ 
+    <Item href="#">
+        <Text>Foo</Text>
+    </Item>  
+
     </List>
   </Content>
 </Drawer>

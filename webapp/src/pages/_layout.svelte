@@ -21,14 +21,25 @@
 
 </script>
 
+<style>
+.mdc-drawer-app-content {
+  flex: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.main-content {
+  overflow: auto;
+  height: 100%;
+  padding-left: 10px;
+}
+</style>
+
+
 <AppHeader name={name} />
-
-
 <AppNav />
-
-
-<main class="main-content mdc-drawer-app-content">
-  <div class="mdc-top-app-bar--fixed-adjust ">
+<div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust">
+  <main class="main-content ">
   {#if $user}
   <p>user: {$user.uid} </p>
 {:else}
@@ -37,3 +48,4 @@
 <p>{ $navOpen }</p>
   <slot />
 </main>
+</div>
