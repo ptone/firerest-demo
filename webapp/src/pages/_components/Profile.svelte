@@ -1,7 +1,13 @@
 <script>
-    export let displayName;
-    export let photoURL;
-    export let uid;
+  export let displayName;
+  export let photoURL;
+  export let uid;
+
+
+  // import { url } from '@sveltech/routify';
+  // let x = $url('/test');
+  // console.log(x)
+
 </script>
 
 <style>

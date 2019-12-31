@@ -1,5 +1,8 @@
 <script lang="ts">
   import Button, {Label, Icon} from '@smui/button';
+  // import { url } from '@sveltech/routify';
+  // let x = $url('/test');
+  // console.log(x);
   export let value: number = 0;
   export let step: number = 1;
 </script>

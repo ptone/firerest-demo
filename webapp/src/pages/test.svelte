@@ -1,12 +1,12 @@
 <script lang="ts">
-  import Counter from "./Counter.svelte";
-  import Profile from "./Profile.svelte"
-  import { user } from "./authstore"
+  import Counter from "../Counter.svelte";
+  import Profile from "./_components/Profile.svelte"
+  import { user } from "../authstore"
   import { writable } from 'svelte/store';
 
   const count = writable(100);
   const unsubscribe = count.subscribe(value => console.log("count", value));
-  import { myStore } from "./store";
+  import { myStore } from "../store";
 
 </script>
 <p>

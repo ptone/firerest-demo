@@ -5,6 +5,7 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import postcss from 'rollup-plugin-postcss';
+import {routify} from '@sveltech/routify';
 
 const svelteOptions = require("./svelte.config");
 
@@ -14,9 +15,9 @@ export default {
   input: "src/main.ts",
   output: {
     sourcemap: true,
-    format: "iife",
+    format: "esm",
     name: "app",
-    file: "public/bundle.js"
+    dir: "public/bundle"
   },
   plugins: [
     svelte({
@@ -37,7 +38,8 @@ export default {
         importee === "svelte" || importee.startsWith("svelte/")
     }),
     commonjs(),
-    typescript(),
+    typescript({objectHashIgnoreUnknownHack: true}),
+    routify({debug: true}),
     postcss({
       extract: true,
       minimize: true,
@@ -50,7 +52,7 @@ export default {
         }]
       ]
     }),
-
+    // routify({ dynamicImports: true }),
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
     !production && livereload("public"),

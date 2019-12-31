@@ -4,7 +4,7 @@
   import List from '@smui/list';
   import Login from "./Login.svelte";
   import Menu, {SelectionGroup, SelectionGroupIcon} from '@smui/menu';
-  import { navOpen } from "./navstate-store"
+  import { navOpen } from "../../navstate-store";
   let menu;
   export let name = "my-site";
 </script>

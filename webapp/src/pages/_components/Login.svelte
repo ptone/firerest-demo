@@ -1,12 +1,12 @@
 <script>
 
-  import { fireAuth, googleProvider } from './firebase';
+  import { fireAuth, googleProvider } from '../../firebase';
   // import { authState } from 'rxfire/auth';
   import List, {Item, Separator, Text, PrimaryText, SecondaryText, Graphic} from '@smui/list';
 
   // let user;
 
-  import { user } from './authstore'
+  import { user } from '../../authstore'
 
   // const unsubscribe = authState(fireAuth).subscribe(u => user = u);
 
