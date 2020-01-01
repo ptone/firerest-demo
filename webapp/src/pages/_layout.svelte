@@ -1,10 +1,22 @@
 <script lang="ts">
   import AppHeader from "./_components/AppHeader.svelte";
   import AppNav from "./_components/AppNav.svelte";
-  import { signIn } from "../firebase";
+  import { signIn, getToken } from "../firebase";
   import { user } from "../authstore";
 
+  export let scoped;
+  console.log(scoped);
   export let name: string;
+  let token: string = "pending";
+  user.subscribe(u => {
+    console.log("in sub");
+    if (u) {
+      u.getIdToken().then((t) => token = t)
+    } else {
+      console.log("null user");
+      token = "pending new login";
+    }
+  });
 </script>
 
 <style>
@@ -34,7 +46,13 @@
 <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust">
   <main class="main-content ">
 
+    <p>token: { token }</p>
     {#if $user}
+    <p>{$user.uid}</p>
+
+
+
+
       <slot />
     {:else}
       <h3 class="mdc-typography--headline3">You must first login</h3>

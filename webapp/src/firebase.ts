@@ -17,7 +17,14 @@ firebase.initializeApp(firebaseConfig);
 
 export const fireAuth = firebase.auth();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
-
+export async function getToken() {
+  console.log(fireAuth.currentUser);
+  if (fireAuth.currentUser) {
+    return await fireAuth.currentUser.getIdToken();
+  } else {
+    return ""
+  }
+}
 export function signIn() {
   fireAuth.signInWithPopup(googleProvider);
 }
