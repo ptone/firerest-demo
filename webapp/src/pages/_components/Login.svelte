@@ -1,6 +1,6 @@
 <script>
 
-  import { fireAuth, googleProvider } from '../../firebase';
+  import { fireAuth, signIn } from '../../firebase';
   // import { authState } from 'rxfire/auth';
   import List, {Item, Separator, Text, PrimaryText, SecondaryText, Graphic} from '@smui/list';
 
@@ -10,9 +10,6 @@
 
   // const unsubscribe = authState(fireAuth).subscribe(u => user = u);
 
-  function login() {
-      fireAuth.signInWithPopup(googleProvider);
-  }
 </script>
 
 
@@ -23,7 +20,7 @@
       <Text>Logout</Text>
     </Item>
 {:else}
-  <Item on:click={ login } >
+  <Item on:click={ () => signIn() } >
       <Text>Signin with Google</Text>
   </Item>
 {/if}

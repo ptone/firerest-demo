@@ -13,6 +13,7 @@
 
   let active = 'Gray Kittens';
   import { navOpen } from "../../navstate-store";
+  import { user } from "../../authstore";
 
 // ideally this could be in the component
 // but when I try context=module for the script getting: https://gist.github.com/ptone/6f6c3c14b98635daf0c01870120a2e40
@@ -34,11 +35,13 @@
   </Header>
   <Content>
     <List>
-    {#each links as [path, name]}
-      <Item href={$url(path)} activated={$isActive(path)}>
-        <Text>{name} {$isActive(path)}</Text>
-      </Item> 
-    {/each}
+    {#if $user}
+      {#each links as [path, name]}
+        <Item href={$url(path)} activated={$isActive(path)}>
+          <Text>{name} {$isActive(path)}</Text>
+        </Item> 
+      {/each}
+    {/if}
     <Separator />
     <Item href="#">
         <Text>Foo</Text>

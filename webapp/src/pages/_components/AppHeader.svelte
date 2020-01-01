@@ -5,31 +5,25 @@
   import Login from "./Login.svelte";
   import Menu, {SelectionGroup, SelectionGroupIcon} from '@smui/menu';
   import { navOpen } from "../../navstate-store";
+  import { user } from '../../authstore';
   let menu;
   export let name = "my-site";
 </script>
 
 
 <style>
-/* header :global(.app-bar) {
-  position: absolute;
-  z-index: 7;
-} */
 
 :global(.mdc-top-app-bar) {
   z-index: 7;
 }
-/* 
-:global(#app-header) {
-  z-index: 7;
-  position: absolute;
-} */
 
-
+img {
+  border-radius: 50%;
+  padding-left: 17px;
+}
 
 </style>
 
-<!-- <TopAppBar id="app-header" class="app-bar" variant="standard"> -->
 <TopAppBar variant="standard">
   <Row>
     <Section>
@@ -40,7 +34,11 @@
       <IconButton class="material-icons" aria-label="Download">file_download</IconButton>
       <IconButton class="material-icons" aria-label="Print this page">print</IconButton>
       <div>
-      <IconButton class="material-icons menu-toggle-button" aria-label="User" on:click={() => menu.setOpen(true)}>account_circle</IconButton>
+      {#if $user}
+        <img src={ $user.photoURL } on:click={() => menu.setOpen(true)} width="30" alt="user avatar">
+      {:else}
+        <IconButton class="material-icons menu-toggle-button" aria-label="User" on:click={() => menu.setOpen(true)}>account_circle</IconButton>
+      {/if}
       <Menu bind:this={menu} anchorCorner="BOTTOM_LEFT">
         <List>
           <Login />

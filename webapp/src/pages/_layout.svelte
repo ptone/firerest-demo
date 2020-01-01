@@ -1,51 +1,47 @@
 <script lang="ts">
-  import Menu, {SelectionGroup, SelectionGroupIcon} from '@smui/menu';
-  import List, {Item, Separator, Text, PrimaryText, SecondaryText, Graphic} from '@smui/list';
   import AppHeader from "./_components/AppHeader.svelte";
   import AppNav from "./_components/AppNav.svelte";
-  import Profile from "./_components/Profile.svelte";
-  import { navOpen } from "../navstate-store";
-
-
-  import { user } from "../authstore"
-  // import { url } from '@sveltech/routify'
+  import { signIn } from "../firebase";
+  import { user } from "../authstore";
 
   export let name: string;
-
-  // let testurl = $url("/test");
-  let testurl = "foo";
-  // console.log(url);
-  // console.log(url.subscribe);
-  // console.log(url.subscribe("foo"));
-
-
 </script>
 
 <style>
-.mdc-drawer-app-content {
-  flex: auto;
-  overflow: auto;
-  position: relative;
-}
+  .mdc-drawer-app-content {
+    flex: auto;
+    overflow: auto;
+    position: relative;
+  }
 
-.main-content {
-  overflow: auto;
-  height: 100%;
-  padding-left: 10px;
-}
+  .main-content {
+    overflow: auto;
+    height: 100%;
+    padding-left: 10px;
+
+
+  }
+
+  img {
+    margin: 0 auto;
+    display: block;
+  }
 </style>
 
-
-<AppHeader name={name} />
+<AppHeader {name} />
 <AppNav />
+
 <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust">
   <main class="main-content ">
-  {#if $user}
-  <p>user: {$user.uid} </p>
-{:else}
-  <p>not logged in</p>
-{/if}
-<p>{ $navOpen }</p>
-  <slot />
-</main>
+
+    {#if $user}
+      <slot />
+    {:else}
+      <h3 class="mdc-typography--headline3">You must first login</h3>
+      <img
+        alt="login button"
+        on:click={() => signIn()}
+        src="./image/btn_google_signin_light_normal_web.png" />
+    {/if}
+  </main>
 </div>
