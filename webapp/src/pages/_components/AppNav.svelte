@@ -21,8 +21,9 @@
   // export { navOpen };
 
   const links = [
-    ['/index', 'Home'],
-    ['/test', 'Testing']
+    ['./index', 'Home'],
+    ['./test', 'Testing'],
+    ['./cars/index', 'Cars']
   ];
 
 
@@ -38,7 +39,7 @@
     {#if $user}
       {#each links as [path, name]}
         <Item href={$url(path)} activated={$isActive(path)}>
-          <Text>{name} {$isActive(path)}</Text>
+          <Text>{name} {path} {$isActive(path)} </Text>
         </Item> 
       {/each}
     {/if}

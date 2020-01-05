@@ -8,12 +8,14 @@ async function testFetch() {
     'Authorization': 'bearer ' + t
   });
   
-  let response = await fetch('https://ohttpbin-avzcrpvnta-uc.a.run.app/get', {
+  let response = await fetch('https://api-demo-public-avzcrpvnta-uc.a.run.app/api/v1/cars?limit=38', {
     headers: myHeaders
   });
+  console.log(response);
   let myJson = await response.json();
   console.log(myJson);
-  return JSON.stringify(myJson);
+  // return JSON.stringify(myJson);
+  return myJson
 }
 
 export { testFetch }

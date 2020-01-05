@@ -55,3 +55,11 @@ html, body {
 // .mdc-top-app-bar {
 //   z-index: 7;
 // }
+
+
+@media(min-width: 1024px) {
+  .app-fab--absolute {
+  bottom: 1.5rem;
+  right: 1.5rem;
+  }
+}

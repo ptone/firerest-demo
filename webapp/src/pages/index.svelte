@@ -18,9 +18,9 @@
 <button on:click={ tryFetch }>boo</button>
 
     {#await testFetch() }
-    <p>getting token...</p>
+    <p>getting data...</p>
     {:then token}
-    <p>origin: { token }</p>
+    <p>data: { token }</p>
     {:catch error}
     <p>Something went wrong: {error.message}</p>
     {/await}
