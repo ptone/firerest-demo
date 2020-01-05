@@ -4,10 +4,18 @@
   import IconButton from '@smui/icon-button';
 
 
+  import { onMount } from 'svelte';
   import { testFetch } from '../../api'
 
   function doSomething() {
   }
+
+  let data = [];
+
+
+	onMount(() => {
+    testFetch().then((d) => data = d);
+	});
 
   function deleteItem(id) {
     alert(id);
@@ -40,10 +48,9 @@
 
 </style>
 
-<p>something something</p>
-{#await testFetch() }
+<!-- {#await testFetch() }
 <p>getting data...</p>
-{:then data}
+{:then data} -->
 
 <DataTable id="list-view" table$aria-label="Cars">
   <Head>
@@ -71,6 +78,6 @@
   <Fab class="app-fab--absolute" on:click={doSomething}><Icon class="material-icons">add</Icon></Fab>
 </div>
 
-{:catch error}
+<!-- {:catch error}
 <p>Something went wrong: {error.message}</p>
-{/await}
+{/await} -->
