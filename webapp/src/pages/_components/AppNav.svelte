@@ -1,9 +1,5 @@
 <script lang="ts">
-  // import { isActive, url } from '@sveltech/routify';
   import { isActive, url } from '@sveltech/routify';
-  // import { url as wtf } from '@sveltech/routify';
-  // let x = $wtf('/test');
-  // console.log(x);
   
   import Menu, {SelectionGroup, SelectionGroupIcon} from '@smui/menu';
   import List, {Item, Separator, Text, PrimaryText, SecondaryText, Graphic} from '@smui/list';
@@ -45,7 +41,7 @@
     {/if}
     <Separator />
     <Item href="#">
-        <Text>Foo</Text>
+        <Text>many Foo to test <br />drawer scroll</Text>
     </Item>  
  
  
