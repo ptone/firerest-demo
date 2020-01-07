@@ -7,7 +7,7 @@
   import { navOpen } from "../../navstate-store";
   import { user } from '../../authstore';
   let menu;
-  export let name = "my-site";
+  export let name = "default";
 </script>
 
 

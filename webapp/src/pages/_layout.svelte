@@ -47,7 +47,7 @@
   <main class="main-content ">
 
     {#if $user}
-    <p>{$user.uid}</p>
+    <p>your user id: {$user.uid}</p>
       <slot />
     {:else}
       <h3 class="mdc-typography--headline3">You must first login</h3>

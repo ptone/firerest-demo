@@ -16,7 +16,7 @@
   <Counter bind:value={$count} step={3}>Counter 2</Counter>
   <Counter bind:value={$myStore} step={5}>Counter 3</Counter>
 </p>
-<p>blah</p>
+<p>so many blah to debug scrolling</p>
 <p>blah</p>
 <p>blah</p>
 <p>blah</p>
