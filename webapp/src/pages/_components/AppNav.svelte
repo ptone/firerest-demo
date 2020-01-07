@@ -19,7 +19,7 @@
   const links = [
     ['./index', 'Home'],
     ['./test', 'Testing'],
-    ['./cars/index', 'Cars']
+    ['./cars', 'Cars']
   ];
 
 
@@ -41,7 +41,7 @@
     {/if}
     <Separator />
     <Item href="#">
-        <Text>many Foo to test <br />drawer scroll</Text>
+        <Text>many Foo to test <br />drawer scroll layout</Text>
     </Item>  
  
  
