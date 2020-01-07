@@ -22,36 +22,44 @@ get {{ api-demo-url }}/api/v1/openapi.json
 ### 
 
 get {{ api-demo-url }}/api/v1/users
+Authorization: Bearer {{token}}
 
 ###
 
 get {{ api-demo-url }}/api/v1/cars?limit=3
+Authorization: Bearer {{token}}
 
 ### 
 
 get {{ api-demo-url }}/api/v1/cars?q=make=Tesla
+Authorization: Bearer {{token}}
 
 ### 
 
 get {{ api-demo-url }}/api/v1/cars?q=make=Tesla,year=2019
+Authorization: Bearer {{token}}
 
 
 ### 
 
 get {{ api-demo-url }}/api/v1/cars?q=make=Toyota,year=gt~2018
+Authorization: Bearer {{token}}
 
 ### 
 
 get {{ api-demo-url }}/api/v1/cars?q=year=gt~2018,body_styles=ac~Wagon
+Authorization: Bearer {{token}}
 
 ### multiple range on year
 
 get {{ api-demo-url }}/api/v1/cars?q=year=gt~2016,year=lt~2019
+Authorization: Bearer {{token}}
 
 
 ###
 # @name createRequest
 post {{ api-demo-url }}/api/v1/cars
+Authorization: Bearer {{token}}
 content-type: application/json
 
  {
@@ -66,10 +74,13 @@ content-type: application/json
 
 ###
 get {{ api-demo-url }}/api/v1/cars?q=make=Gizmo-mobiles
+Authorization: Bearer {{token}}
 
 ###
 @carId = {{createRequest.response.body.$.id}}
 get {{ api-demo-url }}/api/v1/cars/{{ carId }}
+Authorization: Bearer {{token}}
 
 ###
 delete {{ api-demo-url }}/api/v1/cars/{{ carId }}
+Authorization: Bearer {{token}}
