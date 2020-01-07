@@ -1,13 +1,21 @@
+import sys
 from typing import List
 import urllib.parse
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
-
-
 from starlette.requests import Request
-
-
+import logging
 import app.storage
+
+logger = logging.getLogger("uvicorn")
+logger.setLevel(logging.DEBUG)
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    logger.handlers = gunicorn_logger.handlers
+    logger.setLevel(gunicorn_logger.level)
+    
+
+
 
 def get_router(endpoint_model):
     router = APIRouter()
@@ -27,6 +35,7 @@ def get_router(endpoint_model):
         except Exception as e:
             raise HTTPException(status_code=400, detail="malformed query")
         objects = db.query(query=q, kind=endpoint_model, limit=limit)
+        logger.debug(request.headers)
         return objects
     
     list_items.__doc__ = """
