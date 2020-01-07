@@ -2,13 +2,13 @@ import { getToken } from './firebase';
 
 async function testFetch() {
   let t = await getToken();
-  // console.log(t);
+  console.log(t);
   var myHeaders = new Headers({
     'Content-Type': 'application/json',
-    'Authorization': 'bearer ' + t
+    'Authorization': 'Bearer ' + t
   });
   
-  let response = await fetch('https://api-demo-public-avzcrpvnta-uc.a.run.app/api/v1/cars?limit=38', {
+  let response = await fetch('https://api-demo-gateway-avzcrpvnta-uc.a.run.app/api/v1/cars?limit=25', {
     headers: myHeaders
   });
   console.log(response);
