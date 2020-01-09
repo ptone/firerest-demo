@@ -1,0 +1,4 @@
+[
+    { "op": "add", "path": "/host", "value": "api-demo-avzcrpvnta-uc.a.run.app" },
+    { "op": "add", "path": "/x-google-backend", "value": { "address": "https://api-demo-avzcrpvnta-uc.a.run.app" }}
+]

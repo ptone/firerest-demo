@@ -1,0 +1,12 @@
+[
+  { "op": "add", "path": "/securityDefinitions", "value": {
+    "firebase": {
+      "authorizationUrl": "",
+      "flow": "implicit",
+      "type": "oauth2",
+      "x-google-issuer": "https://securetoken.google.com/ptone-misc",
+      "x-google-jwks_uri" : "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com",
+      "x-google-audiences" : "ptone-misc"}
+   } },
+  { "op": "add", "path": "/security", "value": [{"firebase":[]}]}
+]
