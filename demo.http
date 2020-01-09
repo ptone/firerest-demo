@@ -84,3 +84,56 @@ Authorization: Bearer {{token}}
 ###
 delete {{ api-demo-url }}/api/v1/cars/{{ carId }}
 Authorization: Bearer {{token}}
+
+###
+# note this should be an error as path and body id do not match
+put {{ api-demo-url }}/api/v1/cars/Acura_TLX_2017
+Authorization: Bearer {{token}}
+
+  {
+    "id": "Acura_TLX_2017xyz",
+    "make": "Acura",
+    "model": "TLXXX",
+    "year": 2017,
+    "body_styles": [
+      "Sedan"
+    ]
+  }
+
+###
+# note this should *not* be an error
+put {{ api-demo-url }}/api/v1/cars/Acura_TLX_2017
+Authorization: Bearer {{token}}
+
+  {
+    "id": "Acura_TLX_2017",
+    "make": "Acura",
+    "model": "TLzzz",
+    "year": 2017,
+    "body_styles": [
+      "Sedan"
+    ]
+  }
+
+###
+get {{ api-demo-url }}/api/v1/cars?q=make=Acura,year=2017
+Authorization: Bearer {{token}}
+
+
+###
+get {{ api-demo-url }}/api/v1/cars/Acura_CL_1997 
+Authorization: Bearer {{token}}
+
+###
+put https://api-demo-gateway-avzcrpvnta-uc.a.run.app/api/v1/cars/Acura_CL_1997
+Authorization: Bearer {{token}}
+
+{
+  "id": "Acura_CL_1997",
+  "make": "Acura",
+  "model": "CLzzzz",
+  "year": 1997,
+  "body_styles": [
+    "Coupe"
+  ]
+}

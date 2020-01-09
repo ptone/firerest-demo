@@ -77,11 +77,27 @@ def get_router(endpoint_model):
     @router.post("", response_model=endpoint_model)
     def create_item(obj: endpoint_model):
         """
-        Create an item given an filled version of the model
+        Create an item given a filled version of the model
 
         **NOTE** id should be empty on post
         """
         # should this error if exists?
+        new_obj = db.save(obj)
+        return new_obj
+
+    @router.put("/{id}", response_model=endpoint_model)
+    def update_item(id: str, obj: endpoint_model):
+        """
+        Update an item given a filled version of the model
+
+        **NOTE** id may be empty in the body - but must match the id in path if provided
+        """
+        # should this error if exists?
+        if obj.id:
+            if obj.id != id:
+                raise HTTPException(status_code=400, detail="id in body does not match id in path")
+        else:
+            obj.id = id
         new_obj = db.save(obj)
         return new_obj
 
