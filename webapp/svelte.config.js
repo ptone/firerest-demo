@@ -1,5 +1,7 @@
 // svelte options exported for svelte-vscode
 
+const sveltePreprocess = require('svelte-preprocess');
+
 const {
   preprocess: makeTsPreprocess,
   createEnv,
@@ -15,9 +17,11 @@ const preprocessOptions = {
     allowNonTsExtensions: true,
   },
 };
-const preprocess = makeTsPreprocess(preprocessOptions);
+
+
 
 module.exports = {
   dev: process.env.NODE_ENV !== "development",
-  preprocess,
+  // preprocess,
+  preprocess: sveltePreprocess(),
 };

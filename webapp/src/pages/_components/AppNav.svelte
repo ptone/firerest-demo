@@ -1,4 +1,5 @@
 <script lang="ts">
+
   import { isActive, url } from '@sveltech/routify';
   
   import Menu, {SelectionGroup, SelectionGroupIcon} from '@smui/menu';
@@ -27,7 +28,7 @@
 
 <Drawer class="mdc-top-app-bar--fixed-adjust" variant="dismissible" bind:this={myDrawer} bind:open={$navOpen}>
   <Header>
-    <Title>Super Drawer</Title>
+    <Title>Test Drawer</Title>
     <Subtitle>It's the best drawer.</Subtitle>
   </Header>
   <Content>
@@ -35,188 +36,12 @@
     {#if $user}
       {#each links as [path, name]}
         <Item href={$url(path)} activated={$isActive(path)}>
-          <Text>{name} {path} {$isActive(path)} </Text>
+          <Text>{name}</Text>
         </Item> 
       {/each}
     {/if}
     <Separator />
-    <Item href="#">
-        <Text>many Foo to test <br />drawer scroll layout</Text>
-    </Item>  
- 
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
-
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
- 
-    <Item href="#">
-        <Text>Foo</Text>
-    </Item>  
+   
 
     </List>
   </Content>

@@ -1,15 +1,22 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition';
   import DataTable, {Head, Body, Row, Cell} from '@smui/data-table';
+  import CustomRow from './_components/CustomRow.svelte';
   import Fab, {Icon} from '@smui/fab';
   import IconButton from '@smui/icon-button';
   import Dialog, {Title, Content, Actions, InitialFocus} from '@smui/dialog';
   import Button, {Label} from '@smui/button';
   import LinearProgress from '@smui/linear-progress';
+  import Spinner from '../_components/Spinner.svelte';
 
-  import { onMount } from 'svelte';
-  import { testFetch } from '../../api'
+  import { onMount, tick } from 'svelte';
+
+  import { listItems, updateItem, deleteItem } from '../../api'
 
   import EditForm from './_components/EditForm.svelte'
+
+  import  uuidv4  from 'uuid/v4';
+
 
   function doSomething() {
     console.log("something");
@@ -31,31 +38,69 @@
     year: 1980,
     body_styles: []
   };
-
+  let createOrUpdate = "Update";
   let editDialog;
+  let deletingItem;
+  let savingItem;
 
-  function editItem(id) {
-    console.log(id);
-    editingItem = id;
+  function editItem(item) {
+    if (!item.id) {
+      item.id = uuidv4();
+      createOrUpdate = "Create";
+      data.unshift(item);
+    } else {
+      createOrUpdate = "Update";
+    }
+    console.log(item);
+    editingItem = item;
     editDialog.open();
   }
 
 	onMount(() => {
-    testFetch().then((d) => data = d);
+    refresh();
 	});
 
-  function deleteItem(id) {
-    alert(id);
+  function deleteRow(id) {
+    deletingItem = id;
+    deleteItem(id).then((r) => {
+      data = data.filter(i => i.id !== id);
+    });
+  }
+  function createItem() {
+
+    editItem({
+        make: "",
+        model: "",
+        year: 1980,
+        body_styles: []
+      });
   }
 
   function saveHandler() {
+    savingItem = editingItem.id;
     console.log("dialog save");
     console.log(editingItem);
+          let foundIndex = data.findIndex(x => x.id == editingItem.id);
+      data[foundIndex] = editingItem
+    updateItem(editingItem).then((item) => {
+      savingItem = "";
+    });
+  }
+
+   function refresh() {
+    deletingItem = "";
+    data = [];
+    // tick is here to try to force a redraw with empty array
+    tick().then(() => {
+      listItems().then((d) => {
+        console.log(d.length);
+        data = data.concat(d);
+      });
+    });
   }
 </script>
 
 <h4 class="mdc-typography--headline4">Car Models</h4>
-
 {#if data.length}
 <DataTable id="list-view" table$aria-label="Cars">
   <Head>
@@ -66,22 +111,30 @@
     </Row>
   </Head>
   <Body>
-  {#each data as item, i}
-    <Row>
-    <!-- <Row on:click={doSomething} > -->
+  {#each data as item, i (item.id)}
+    <CustomRow id={item.id} deleting={item.id == deletingItem} saving={item.id == savingItem}>
+
       <Cell>{ item.year }</Cell>
       <Cell>{ item.make }</Cell>
       <Cell>{ item.model }</Cell>
       <Cell>
+      {#if item.id == savingItem}
+        <Spinner size=20 />
+      {:else}
         <IconButton class="material-icons" on:click={() => editItem(item)}>edit</IconButton>
-        <IconButton class="material-icons" on:click={() => deleteItem(item.id)}>delete</IconButton>
+      {/if}
+        <IconButton class="material-icons" on:click={() => deleteRow(item.id)}>delete</IconButton>
       </Cell>
-    </Row>
+    </CustomRow>
+
   {/each}
   </Body>
 </DataTable>
 <div class="lower-right">
-  <Fab class="app-fab--absolute" on:click={doSomething}><Icon class="material-icons">add</Icon></Fab>
+  <Fab class="app-fab--absolute" on:click={createItem}><Icon class="material-icons">add</Icon></Fab>
+</div>
+<div class="upper-right">
+  <Fab on:click={refresh}><Icon class="material-icons">refresh</Icon></Fab>
 </div>
 {:else}
   <LinearProgress indeterminate />
@@ -103,7 +156,7 @@
       <Label>Cancel</Label>
     </Button>
     <Button action="update" default use={[InitialFocus]}>
-      <Label>Update</Label>
+      <Label>{createOrUpdate}</Label>
     </Button>
   </Actions>
 </Dialog>
@@ -119,4 +172,20 @@
   bottom: 1rem;
   right: 1rem;
 }
+
+.upper-right {
+  position: fixed;
+  top: 10rem;
+  right: 1rem;
+}
+
+
+:global(tr[deleting="true"].mdc-data-table__row)  {
+  background-color: #f7d7d5 !important;
+}
+
+:global(tr[saving="true"].mdc-data-table__row)  {
+  background-color: darkgray !important;
+}
+
 </style>
