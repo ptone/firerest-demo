@@ -17,7 +17,8 @@ get {{ api-demo-url }}
 
 get {{ api-demo-url }}/api/v1/openapi.json
 
-### https://{{ api-demo-url }}/docs
+# https://api-demo-public-avzcrpvnta-uc.a.run.app/api/v1/openapi.json
+# https://api-demo-public-avzcrpvnta-uc.a.run.app/docs
 
 ### 
 
